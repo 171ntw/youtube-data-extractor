@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        <%= data.video.titulo %>
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: 'Segoe UI', sans-serif;
+            background: #121212;
+            color: #ffffff;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hashtag {
+            background-color: #444;
+            color: #fff;
+            border-radius: 20px;
+            padding: 5px 15px;
+            margin: 5px 5px 0 0;
+            display: inline-block;
+            font-size: 14px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 900px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border-radius: 10px;
+        }
+
+        .close-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="particles-js"></div>
+    <div class="container mx-auto px-4 py-10">
+        <h1 class="text-3xl md:text-4xl font-bold text-center mb-10">
+            <%= data.video.titulo %>
+        </h1>
+
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+            <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+                <img src="<%= data.video.miniatura %>" alt="Miniatura" class="w-full rounded-lg mb-4">
+                <p><strong>Descrição:</strong>
+                    <%= data.video.descricao %>
+                </p>
+                <p><strong>Publicado em:</strong>
+                    <%= data.video.dataPublicacao %>
+                </p>
+                <p><strong>Visualizações:</strong>
+                    <%= data.video.visualizacoes %>
+                </p>
+                <p><strong>Likes:</strong>
+                    <%= data.video.likes %>
+                </p>
+
+                <div class="mt-4 flex flex-wrap">
+                    <% data.video.hashtags.forEach(tag=> { %>
+                        <span class="hashtag">
+                            <%= tag %>
+                        </span>
+                        <% }); %>
+                </div>
+
+                <button id="openModalBtn"
+                    class="mt-6 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition">Assistir
+                    Vídeo</button>
+            </div>
+
+            <div class="bg-gray-900 p-3 rounded-lg shadow-lg text-center">
+                <img src="<%= data.canal.imagem %>" alt="Canal"
+                    class="w-24 h-24 rounded-full mx-auto mb-4 border-2 border-black" />
+                <h2 class="text-xl font-bold">
+                    <%= data.canal.nome %>
+                </h2>
+                <p class="text-blue-300 mb-2">
+                    <%= data.canal.inscritos %>
+                </p>
+                <a href="https://youtube.com<%= data.canal.url %>" target="_blank"
+                    class="text-blue-400 hover:underline">Visitar Canal</a>
+            </div>
+        </div>
+        <div id="particles-js"></div>
+    </div>
+
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <iframe src="https://www.youtube.com/embed/<%= new URL(data.video.url).searchParams.get('v') %>"
+                allowfullscreen></iframe>
+            <button id="closeModalBtn" class="close-btn">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 90, density: { enable: true, value_area: 800 } },
+                color: { value: "#00bcd4" },
+                shape: { type: "circle" },
+                opacity: { value: 0.3, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 130, color: "#00bcd4", opacity: 0.3, width: 1 },
+                move: { enable: true, speed: 1 }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const videoModal = document.getElementById('videoModal');
+
+        openModalBtn.addEventListener('click', () => videoModal.style.display = 'flex');
+        closeModalBtn.addEventListener('click', () => videoModal.style.display = 'none');
+        window.addEventListener('click', (e) => { if (e.target === videoModal) videoModal.style.display = 'none'; });
+    </script>
+</body>
+
+</html>

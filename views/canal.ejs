@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Channel | <%= data.nome %></title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0c0f14, #1a1f29);
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .container {
+      background-color: #111827;
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .avatar {
+      border-radius: 9999px;
+      border: 2px solid #00bcd4;
+    }
+
+    .info-section {
+      background-color: #1f2937;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+    }
+
+    .video-card {
+      background-color: #111827;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0, 188, 212, 0.15);
+      transition: transform 0.2s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .title-card {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #00bcd4;
+      text-decoration: none;
+    }
+
+    .title-card:hover {
+      color: #00bcd4;
+      text-decoration: underline;
+    }
+
+    iframe {
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="particles-js"></div>
+
+  <div class="container mx-auto max-w-6xl">
+    <h1 class="text-4xl font-bold mb-10 text-center text-cyan-400">Informações do Canal</h1>
+
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-6 mb-10">
+      <img src="<%= data.imagem %>" alt="Imagem do Canal" class="w-32 h-32 avatar" />
+      <div>
+        <h2 class="text-3xl font-semibold mb-2"><%= data.nome %></h2>
+        <p class="text-cyan-300 mb-1"><strong>Inscritos:</strong> <%= data.inscritos %></p>
+        <p class="text-cyan-300"><strong>Vídeos:</strong> <%= data.videos.length %></p>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h3 class="text-2xl font-bold mb-6 border-b border-gray-600 pb-2">Últimos Vídeos</h3>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <% data.videos.forEach(function(video) { %>
+          <div class="video-card">
+            <h4 class="text-lg font-semibold mb-3">
+              <a href="<%= video.url %>" target="_blank" class="title-card"><%= video.titulo %></a>
+            </h4>
+            <iframe
+              src="<%= video.embedUrl %>"
+              width="100%" height="200"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              class="rounded">
+            </iframe>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 100, density: { enable: true, value_area: 800 } },
+        color: { value: "#00bcd4" },
+        shape: { type: "circle" },
+        opacity: { value: 0.3, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 130, color: "#00bcd4", opacity: 0.3, width: 1 },
+        move: { enable: true, speed: 1 }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+        modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
+      },
+      retina_detect: true
+    });
+  </script>
+
+</body>
+
+</html>

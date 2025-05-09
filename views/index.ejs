@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Info</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            background: rgba(18, 18, 18, 0.9);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+        }
+
+        .input-field,
+        .button {
+            background: linear-gradient(135deg, #4f4f4f, #1f1f1f);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: background 0.3s ease;
+        }
+
+        .input-field:focus,
+        .button:hover {
+            background: linear-gradient(135deg, #6e6e6e, #2f2f2f);
+        }
+
+        .button {
+            transition: transform 0.3s ease;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+        }
+
+        .particle-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .result-box {
+            background: rgba(28, 28, 28, 0.9);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body class="text-white bg-gradient-to-r from-black to-gray-800 overflow-x-hidden">
+    <div id="particles-js" class="particle-bg"></div>
+
+    <div class="container mx-auto max-w-4xl mt-12">
+        <h1 class="text-4xl font-bold text-center text-cyan-400 mb-6">Obtenha Informações do YouTube</h1>
+
+        <form class="mb-6" action="/info/video" method="get">
+            <div class="flex flex-col mb-4">
+                <label for="url-video" class="text-lg font-semibold mb-2">URL do Vídeo</label>
+                <input id="url-video" type="text" name="url" class="input-field p-4 rounded-md"
+                    placeholder="Cole a URL do vídeo aqui" required>
+            </div>
+            <button type="submit" class="button p-4 rounded-md text-xl w-full">Buscar Informações do Vídeo</button>
+        </form>
+
+        <form class="mb-6" action="/info/canal" method="get">
+            <div class="flex flex-col mb-4">
+                <label for="url-canal" class="text-lg font-semibold mb-2">URL do Canal</label>
+                <input id="url-canal" type="text" name="url" class="input-field p-4 rounded-md"
+                    placeholder="Cole a URL do canal aqui" required>
+            </div>
+            <button type="submit" class="button p-4 rounded-md text-xl w-full">Buscar Informações do Canal</button>
+        </form>
+    </div>
+
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 100, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.3, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.3, width: 1 },
+                move: { enable: true, speed: 1 }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found</title>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <style>
+        body {
+            background: #080808;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .particle-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .container h1 {
+            font-size: 4rem;
+            color: #5c5c5c;
+            font-family: 'Hack Nerd';
+        }
+
+        .container p {
+            font-size: 1.5rem;
+            color: #ddd;
+            font-family: 'Hack Nerd';
+        }
+
+        .back-home {
+            font-size: 1.25rem;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #4e90ff;
+            transition: color 0.3s;
+        }
+
+        .back-home:hover {
+            color: #3fecff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="particles-js" class="particle-bg"></div>
+    <div class="container">
+        <h1>Page Not Found</h1>
+        <p>The page you are looking for doesn't exist.</p>
+        <a href="/" class="back-home">Go Back to Home</a>
+    </div>
+
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 100, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.3, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.3, width: 1 },
+                move: { enable: true, speed: 1 }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+    </script>
+</body>
+
+</html>

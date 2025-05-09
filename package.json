@@ -1,0 +1,11 @@
+{
+  "main": "server.js",
+  "keywords": ["Youtube", "API", "NodeJS", "JavaScript", "Ejs", "Html"],
+  "author": "https://github.com/171ntw",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "particles.js": "^2.0.0",
+    "puppeteer": "^24.8.2"
+  }
+}
