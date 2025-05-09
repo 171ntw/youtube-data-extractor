@@ -64,28 +64,6 @@ Displays information of a YouTube channel on a webpage.
 http://localhost:3000/info/channel?url=https://www.youtube.com/c/ExampleChannel
 ```
 
-### **GET /api/info/video**
-Returns the information of a video in JSON format.
-
-
-**Parameters**:
-- `url` (query string): The URL of the video.
-**Example**:
-```text
-http://localhost:3000/api/info/video?url=https://www.youtube.com/watch?v=dQw4w9WgXcQ
-```
-
-### **GET /api/info/channel**
-Returns the information of a channel in JSON format.
-
-**Parameters**:
-- `url` (query string): The URL of the channel.
-
-**Example**:
-```text
-http://localhost:3000/api/info/channel?url=https://www.youtube.com/c/ExampleChannel
-```
-
 ## Example Response Data
 
 ### **Video Data**
